@@ -8,7 +8,8 @@
     "typecheck": "npx tsgo --noEmit",
     "lint": "npx oxlint src",
     "fmt": "npx oxfmt --write src",
-    "fmt:check": "npx oxfmt src"
+    "fmt:check": "npx oxfmt src",
+    "check": "npx tsgo --noEmit & npx oxlint src & npx oxfmt src & wait"
   },
   "keywords": [],
   "author": "",
