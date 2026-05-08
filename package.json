@@ -2,9 +2,13 @@
   "name": "learnspace-effect",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "basic": "npx tsgo --noEmit && node --experimental-strip-types src/basic/index.ts",
+    "typecheck": "npx tsgo --noEmit",
+    "lint": "npx oxlint src",
+    "fmt": "npx oxfmt --write src",
+    "fmt:check": "npx oxfmt src"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +17,8 @@
     "effect": "4.0.0-beta.64"
   },
   "devDependencies": {
-    "@typescript/native-preview": "7.0.0-dev.20260508.1"
+    "@typescript/native-preview": "7.0.0-dev.20260508.1",
+    "oxfmt": "^0.48.0",
+    "oxlint": "^1.63.0"
   }
 }
