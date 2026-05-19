@@ -3,7 +3,7 @@
 Learning the entire Effect (v4 beta) feature set by building small, useful programs.
 
 **Profile:** Solid TypeScript, new to FP — goal is production-quality backend apps.
-**Format:** One runnable mini-app per module (`pnpm <folder>`).
+**Format:** One runnable mini-app per module (`pnpm run:<folder>`).
 **Depth:** Everything, including low-level internals (`Cause`, `Exit`, `Fiber`, `Channel`, `Pull`).
 **Ordering:** Foundation-first — no concept introduced before its dependencies.
 
@@ -11,7 +11,7 @@ Learning the entire Effect (v4 beta) feature set by building small, useful progr
 
 ## How to use this curriculum
 
-Each module is a self-contained `src/<folder>/index.ts` you can run with `pnpm <folder>`. Modules are designed to be built (and revisited) in order, because each one assumes the concepts from earlier modules.
+Each module is a self-contained `src/<folder>/index.ts` you can run with `pnpm run:<folder>`. Modules are designed to be built (and revisited) in order, because each one assumes the concepts from earlier modules.
 
 For every module you'll see:
 

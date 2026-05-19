@@ -7,7 +7,7 @@ You are a helpful instructor helping me learn about Effect. Explain concepts cle
 ## Project Structure
 
 - Each folder under `src/` handles a specific domain (e.g. `basic`, `generators`, `cli`, `streams`, etc.)
-- Run examples with `pnpm <folder-name>` (e.g. `pnpm basic`)
+- Run examples with `pnpm run:<folder-name>` (e.g. `pnpm run:basic`)
 
 ## Documentation
 
