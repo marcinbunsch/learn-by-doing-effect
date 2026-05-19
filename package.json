@@ -4,10 +4,6 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "basic": "node --experimental-strip-types src/basic/index.ts",
-    "stream": "node --experimental-strip-types src/stream/index.ts",
-    "stream:csv": "node --experimental-strip-types src/stream/csv.ts",
-    "stream:int": "node --experimental-strip-types src/stream/interruptable.ts",
     "typecheck": "tsgo --noEmit",
     "lint": "oxlint src",
     "fmt": "oxfmt --write src",
@@ -25,6 +21,7 @@
     "@types/node": "^25.6.1",
     "@typescript/native-preview": "7.0.0-dev.20260508.1",
     "oxfmt": "^0.48.0",
-    "oxlint": "^1.63.0"
+    "oxlint": "^1.63.0",
+    "tsx": "^4.22.2"
   }
 }
