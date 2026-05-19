@@ -4,20 +4,25 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "basic": "npx tsgo --noEmit && node --experimental-strip-types src/basic/index.ts",
-    "typecheck": "npx tsgo --noEmit",
-    "lint": "npx oxlint src",
-    "fmt": "npx oxfmt --write src",
-    "fmt:check": "npx oxfmt src",
-    "check": "npx tsgo --noEmit & npx oxlint src & npx oxfmt src & wait"
+    "basic": "node --experimental-strip-types src/basic/index.ts",
+    "stream": "node --experimental-strip-types src/stream/index.ts",
+    "stream:csv": "node --experimental-strip-types src/stream/csv.ts",
+    "stream:int": "node --experimental-strip-types src/stream/interruptable.ts",
+    "typecheck": "tsgo --noEmit",
+    "lint": "oxlint src",
+    "fmt": "oxfmt --write src",
+    "fmt:check": "oxfmt src",
+    "check": "tsgo --noEmit & oxlint src & oxfmt src & wait"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "csv-parse": "^6.2.1",
     "effect": "4.0.0-beta.64"
   },
   "devDependencies": {
+    "@types/node": "^25.6.1",
     "@typescript/native-preview": "7.0.0-dev.20260508.1",
     "oxfmt": "^0.48.0",
     "oxlint": "^1.63.0"
