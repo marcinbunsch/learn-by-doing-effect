@@ -40,8 +40,8 @@ The rules the tutor follows are encoded in [`CLAUDE.md`](./CLAUDE.md).
 pnpm install                       # bootstrap
 pnpm check                         # typecheck + lint + format, in parallel
 pnpm test                          # run all module suites
-pnpm run:module01-effects          # run that module's program
-pnpm test:module01-effects         # run that module's suite
+pnpm run:module01                  # run that module's program
+pnpm test:module01                 # run that module's test suite
 ```
 
 ## Stack
