@@ -1,55 +1,55 @@
 /**
  * Module 1 — effects
  *
- * Goal: build an async order pricing pipeline.
+ * What you're building
+ * --------------------
+ * A tiny order-pricing calculator.
  *
- *   - A mock backend exposes prices for three SKUs:
- *       { widget: 10, gadget: 25, gizmo: 5 }
- *     It's a Promise-returning function that REJECTS for any other SKU.
- *   - Wrap that Promise API into an Effect.
- *   - Given a line { sku, qty }, compute its total (price × qty).
- *   - Given an order { items: [{ sku, qty }, ...] }, sum all line totals.
- *   - Expose a runnable `program` that prints the total of a sample order.
+ *   - The fake price list (widget=$10, gadget=$25, gizmo=$5) lives in
+ *     `backend.ts`, behind an ASYNC API: `getPrice(sku) => Promise<number>`.
+ *     It resolves for known SKUs and REJECTS for unknown ones.
+ *   - You're given an order — a list of lines like
+ *       [{ sku: "widget", qty: 3 }, { sku: "gadget", qty: 2 }].
+ *   - line total = price × qty.
+ *   - order total = sum of all line totals.
+ *   - Print the order total.
  *
- * Concepts this module exercises:
- *   - The Effect<A, E, R> type — success, error, requirements channels.
- *   - Effect.succeed, Effect.fail
- *   - Effect.sync, Effect.promise, Effect.tryPromise
- *   - pipe, Effect.map, Effect.flatMap, Effect.tap
- *   - Effect.runPromise / runSync / runFork
+ * For the sample order [widget×3, gadget×2, gizmo×4] the answer is
+ * 30 + 50 + 20 = 100.
  *
- * NOTE: `Effect.gen` is intentionally OUT OF SCOPE for this module. You'll
- * meet it in Module 2 (`generators`) and re-implement this pipeline using
- * it there. For now, compose everything with pipe + flatMap.
+ * Why this app for Module 1
+ * -------------------------
+ * Every step maps to one Effect primitive:
+ *   - bring `getPrice` into Effect-land  →  Effect.tryPromise
+ *   - "multiply by qty" on a lookup      →  Effect.map
+ *   - sum across lines                   →  Effect.flatMap
+ *   - actually run it                    →  Effect.runPromise
  *
- * Commands:
+ * The four exports below are the pieces you assemble:
+ *   fetchPrice  →  wraps getPrice as Effect<number, PriceLookupError>
+ *   lineTotal   →  one line's total, built on fetchPrice
+ *   orderTotal  →  sum across lines, built on lineTotal
+ *   program     →  orderTotal(sampleOrder), ready to run
+ *
+ * Out of scope for this module
+ * ----------------------------
+ * Effect.gen — that's Module 2 (`generators`). For now, compose with
+ * pipe + map + flatMap.
+ *
+ * Commands
+ * --------
  *   pnpm run:effects     # runs `program`
  *   pnpm test:effects    # runs the suite against this file AND reference.ts
  */
 
-import { Data, Effect } from "effect"
+import { Effect } from "effect"
+import { PriceLookupError } from "./backend.ts"
+// You'll need this as well
+// import { getPrice } from "./backend.ts"
 
-// ────────────────────────────────────────────────────────────────────────────
-// Contract — the shapes the test suite pins down.
-//
-// The error class and PRICES table ARE the spec — they have to match
-// exactly, so they're declared here. Everything below this section is
-// yours to fill in.
-// ────────────────────────────────────────────────────────────────────────────
-
-// `Data.TaggedError("Tag")<{ fields }>` builds an error class with a
-// readonly `_tag = "Tag"` discriminator, structural equality, and the
-// fields you list. Construct with `new PriceLookupError({ sku: "..." })`
-// — note the OBJECT argument, not positional.
-export class PriceLookupError extends Data.TaggedError("PriceLookupError")<{
-  readonly sku: string
-}> {}
-
-export const PRICES: Record<string, number> = {
-  widget: 10,
-  gadget: 25,
-  gizmo: 5,
-}
+// Re-exported so the test suite can assert on the shared contract.
+// (PriceLookupError + PRICES are also used by `reference.ts`.)
+export { PriceLookupError, PRICES } from "./backend.ts"
 
 // ────────────────────────────────────────────────────────────────────────────
 // Your job — replace the placeholder bodies below.

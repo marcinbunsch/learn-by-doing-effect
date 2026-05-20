@@ -7,44 +7,18 @@
 // The learner is on the honor system not to read this until they've
 // finished their own implementation.
 
-import { Data, Effect, pipe } from "effect"
+import { Effect, pipe } from "effect"
+import { getPrice, PriceLookupError } from "./backend.ts"
 
-// `Data.TaggedError("Tag")<{ ... }>` builds an error class with:
-//   - a readonly `_tag` literal field (the discriminator `Effect.catchTag`
-//     uses in Module 3),
-//   - the fields you list,
-//   - structural equality / hashing via `Data`,
-//   - yieldability — `yield* new PriceLookupError(...)` inside `Effect.gen`
-//     fails the effect with it (we don't use that here; Module 2's job).
-// The constructor takes a single object whose keys are your fields.
-export class PriceLookupError extends Data.TaggedError("PriceLookupError")<{
-  readonly sku: string
-}> {}
-
-// The price table the mock backend uses. Exported so tests can assert on
-// the exact values across both implementations.
-export const PRICES: Record<string, number> = {
-  widget: 10,
-  gadget: 25,
-  gizmo: 5,
-}
-
-// A promise-returning "backend". Resolves for known SKUs, rejects for
-// unknown ones. The whole point of `Effect.tryPromise` is to bridge this
-// kind of API into the Effect world.
-const fetchPriceFromMockApi = (sku: string): Promise<number> =>
-  new Promise((resolve, reject) => {
-    const price = PRICES[sku]
-    if (price === undefined) reject(new Error(`unknown sku: ${sku}`))
-    else resolve(price)
-  })
+// Re-export so the test suite reads the contract straight off this file.
+export { PriceLookupError, PRICES } from "./backend.ts"
 
 // Effect.tryPromise wraps a possibly-rejecting promise. The `catch` field
 // maps the unknown rejection into our typed PriceLookupError. The result
 // has type Effect<number, PriceLookupError, never>.
 export const fetchPrice = (sku: string): Effect.Effect<number, PriceLookupError> =>
   Effect.tryPromise({
-    try: () => fetchPriceFromMockApi(sku),
+    try: () => getPrice(sku),
     catch: () => new PriceLookupError({ sku }),
   })
 
