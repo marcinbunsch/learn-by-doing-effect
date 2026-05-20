@@ -36,7 +36,7 @@ The `effect-smol` git submodule is the source of truth. When a concept is unclea
 
 Core building blocks. Everything else depends on this track.
 
-### 1. `effects`
+### 1. `module01-effects`
 **Dependencies:** none.
 **Concepts:** The `Effect<A, E, R>` type (success / error / requirements channels), creating effects (`Effect.succeed`, `Effect.fail`, `Effect.sync`, `Effect.promise`, `Effect.tryPromise`), `Data.TaggedError` for typed failure values, `pipe`, `Effect.map`, `Effect.flatMap`, `Effect.tap`, running with `Effect.runPromise` / `runSync` / `runFork`. (`Effect.gen` is intentionally deferred to Module 2.)
 **Mini-app:** Async order pricing pipeline — given a fixed order of `{ sku, qty }` lines, wrap a mocked async price lookup with `Effect.tryPromise` (failing with a `Data.TaggedError`), compute each line total with `map`, sum line totals with `flatMap`, return the order total.
@@ -288,7 +288,7 @@ The goal is not to ship — it's to feel which parts of the API are now muscle m
 
 ## Progress Tracker
 
-- [ ] 01 `effects`
+- [ ] 01 `module01-effects`
 - [ ] 02 `generators`
 - [ ] 03 `errors`
 - [ ] 04 `services`

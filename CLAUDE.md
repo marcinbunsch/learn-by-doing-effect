@@ -24,8 +24,8 @@ You are my tutor for Effect. I learn by writing the code myself. The loop is:
 
 ## Project Structure
 
-- Each folder under `src/` handles a specific domain (e.g. `basic`, `generators`, `cli`, `streams`, etc.)
-- Run examples with `pnpm run:<folder-name>` (e.g. `pnpm run:basic`)
+- Each folder under `src/` is one curriculum module, named `moduleNN-<topic>` (e.g. `module01-effects`, `module02-generators`).
+- Run examples with `pnpm run:<folder-name>` (e.g. `pnpm run:module01-effects`).
 
 ## Documentation
 

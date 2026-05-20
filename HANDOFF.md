@@ -25,11 +25,11 @@ A full learning curriculum for the Effect (TypeScript, v4 beta) library was desi
 
 ## What to do next
 
-Build the curriculum modules one at a time, starting from **Module 1: `effects`**.
+Build the curriculum modules one at a time, starting from **Module 1: `module01-effects`**.
 
 ### Module 1 spec (from CURRICULUM.md)
-- **Folder:** `src/effects/index.ts`
-- **Run with:** `pnpm run:effects`
+- **Folder:** `src/module01-effects/index.ts`
+- **Run with:** `pnpm run:module01-effects`
 - **Concepts:** Creating effects, `pipe`, `Effect.gen` (generators), `Effect.map`, `Effect.flatMap`, running with `runPromise`/`runSync`/`runFork`
 - **Mini-app:** Number guessing game — generate a random number, prompt the user, loop until correct
 

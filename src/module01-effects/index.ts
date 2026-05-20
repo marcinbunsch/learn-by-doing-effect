@@ -38,8 +38,8 @@
  *
  * Commands
  * --------
- *   pnpm run:effects     # runs `program`
- *   pnpm test:effects    # runs the suite against this file AND reference.ts
+ *   pnpm run:module01-effects     # runs `program`
+ *   pnpm test:module01-effects    # runs the suite against this file AND reference.ts
  */
 
 import { Effect } from "effect"

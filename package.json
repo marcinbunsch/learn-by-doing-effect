@@ -11,8 +11,8 @@
     "check": "tsgo --noEmit & oxlint src & oxfmt src & wait",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:effects": "vitest run src/effects",
-    "run:effects": "tsgo --noEmit && node --experimental-strip-types src/effects/index.ts"
+    "test:module01-effects": "vitest run src/module01-effects",
+    "run:module01-effects": "tsgo --noEmit && node --experimental-strip-types src/module01-effects/index.ts"
   },
   "keywords": [],
   "author": "",
