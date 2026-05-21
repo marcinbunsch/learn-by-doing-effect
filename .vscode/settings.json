@@ -1,0 +1,33 @@
+{
+  // Use the oxc extension (id: oxc.oxc-vscode) for both linting and
+  // formatting. oxfmt is the formatter; oxlint runs as code actions.
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "editor.formatOnSave": true,
+
+  // Per-language pins — needed because TS/JS often have other formatters
+  // (Prettier, the built-in TS server) registered that would otherwise win.
+  "[typescript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+
+  // Run oxlint's safe fixes on save (turn off if you want lint diagnostics
+  // to stay until you triage them manually).
+  "editor.codeActionsOnSave": {
+    "source.fixAll.oxc": "explicit"
+  }
+}
