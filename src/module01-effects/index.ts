@@ -42,7 +42,7 @@
  *   pnpm test:module01-effects    # runs the suite against this file AND reference.ts
  */
 
-import { Effect } from "effect"
+import { Effect, pipe } from "effect"
 import { PriceLookupError } from "./backend.ts"
 // You'll need this as well
 // import { getPrice } from "./backend.ts"
@@ -79,3 +79,16 @@ export const orderTotal = (order: {
 // `program` is a VALUE (an Effect), not a function — fill it in by
 // replacing the right-hand side with your wired-up pipeline.
 export const program: Effect.Effect<number, PriceLookupError> = Effect.succeed(1)
+
+if (import.meta.main) {
+  Effect.runPromise(
+    pipe(
+      program,
+      Effect.tap((total) =>
+        Effect.sync(() => {
+          console.log(`Order total: ${total}`)
+        }),
+      ),
+    ),
+  )
+}
