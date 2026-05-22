@@ -12,7 +12,9 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:module01": "vitest run src/module01-effects",
-    "run:module01": "tsgo --noEmit && node --experimental-strip-types src/module01-effects/index.ts"
+    "run:module01": "tsgo --noEmit && node --experimental-strip-types src/module01-effects/index.ts",
+    "test:module02": "vitest run src/module02-generators",
+    "run:module02": "tsgo --noEmit && node --experimental-strip-types src/module02-generators/index.ts"
   },
   "keywords": [],
   "author": "",

@@ -45,7 +45,7 @@ Core building blocks. Everything else depends on this track.
 ### 2. `generators`
 **Dependencies:** 1.
 **Concepts:** `Effect.gen`, `yield*` as the effectful analogue of `await`, the mental model of `gen` as syntactic sugar over nested `flatMap`, when to prefer `gen` vs `pipe`.
-**Mini-app:** Re-implement Module 1's pricing pipeline in `Effect.gen` style; keep one helper in both `pipe` and `gen` forms so you can read them side-by-side and verify they produce identical results.
+**Mini-app:** Re-implement Module 1's pricing pipeline in `Effect.gen` style. Read your Module 1 solution side-by-side with this one — same contract, two forms of the same fold — to feel that `gen` is sugar over `flatMap`.
 **Outcomes:** You can desugar a `gen` block into the equivalent `flatMap` chain by eye; you can pick `gen` vs `pipe` based on readability rather than instinct.
 
 ### 3. `errors`
